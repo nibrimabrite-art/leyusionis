@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leyusionis | Autor & Universo Rúnico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #a855f7;
+            --secondary: #6366f1;
+            --dark: #020617;
+            --accent: #fcd34d;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .font-mystic { font-family: 'Playfair_Display', serif; }
+
+        .star-field {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(168, 85, 247, 0.1);
+        }
+
+        .nav-link {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(168, 85, 247, 0.8);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-link:hover {
+            color: white;
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+
+        .btn-main {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+        }
+
+        .nav-sep {
+            width: 1px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="star-field"></div>
+
+    <!-- Header / Nav Fijo -->
+    <header class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex flex-col">
+                <span class="font-mystic text-lg font-bold tracking-[0.2em] text-white glow-text uppercase">LEYUSIONIS</span>
+                <span class="text-[8px] tracking-[0.4em] text-purple-400 font-bold uppercase">Luis Aguilera Albiña</span>
+            </div>
+
+            <!-- Accesos Rápidos Superiores -->
+            <div class="flex items-center gap-4 md:gap-6">
+                <a href="https://nibrimabrite-art.github.io/estelarium/" target="_blank" class="nav-link">
+                    <i data-lucide="sparkles" class="w-3 h-3 text-amber-400"></i> Estelarium
+                </a>
+                <div class="nav-sep"></div>
+                <a href="https://nibrimabrite-art.github.io/runarun/" target="_blank" class="nav-link">
+                    <i data-lucide="zap" class="w-3 h-3 text-blue-400"></i> Runarun
+                </a>
+                <div class="nav-sep"></div>
+                <a href="https://nibrimabrite-art.github.io/laberithshadow/" target="_blank" class="nav-link">
+                    <i data-lucide="ghost" class="w-3 h-3 text-indigo-400"></i> Shadow
+                </a>
+            </div>
+
+            <!-- Enlace Compra Libro -->
+            <a href="https://nibrimabrite-art.github.io/publicidad-book/" target="_blank" class="text-[10px] font-black uppercase tracking-[0.2em] bg-white text-black px-4 py-2 rounded-lg hover:bg-purple-400 hover:text-white transition-all">
+                Comprar Libro
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero / Autor Section -->
+    <main class="max-w-7xl mx-auto px-8 pt-40 pb-24 grid md:grid-cols-2 gap-16 items-center relative z-10">
+        <div class="flex flex-col items-start text-left">
+            <div class="inline-block px-4 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-6">
+                Autor & Visionario
+            </div>
+            <h1 class="font-mystic text-4xl md:text-7xl mb-8 leading-tight">
+                La Senda Oculta <br> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-100 to-indigo-400 uppercase">
+                    El Despertar De Hilda
+                </span>
+            </h1>
+            <p class="text-slate-400 text-lg mb-10 leading-relaxed max-w-xl italic">
+                Un mundo dominado por la oscuridad. Una muchacha intentando encontrar la verdad; un camino hacia la virtud, lleno de magia y superación. Un puzle de poemas que desafían el tiempo, impulsando un nuevo destino: un cambio que la orienta a elegir la luz sobre la oscuridad.
+            </p>
+            
+            <div class="flex flex-wrap gap-4">
+                <a href="https://nibrimabrite-art.github.io/publicidad-book/" target="_blank" class="btn-main px-10 py-5 rounded-2xl text-white font-bold uppercase tracking-widest text-xs flex items-center gap-3">
+                    <i data-lucide="book-open" class="w-4 h-4"></i> Mi Best Seller
+                </a>
+                <a href="https://nibrimabrite-art.github.io/estelarium/" target="_blank" class="px-10 py-5 rounded-2xl border border-white/10 hover:bg-white/5 text-white font-bold uppercase tracking-widest text-xs flex items-center gap-3 transition-all">
+                    Entrar al Estelarium <i data-lucide="sparkles" class="w-4 h-4 text-amber-300"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Elemento Visual / Foto de Autor -->
+        <div class="relative flex justify-center items-center">
+            <div class="absolute w-72 h-72 bg-purple-600/20 rounded-full blur-[100px] animate-pulse"></div>
+            <div class="glass-panel p-2 rounded-[3rem] border-purple-500/20">
+                <div class="w-64 h-80 md:w-80 md:h-[400px] rounded-[2.5rem] bg-slate-900 flex items-center justify-center border border-white/5 overflow-hidden">
+                    <i data-lucide="user" class="w-20 h-20 text-purple-900/40"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Información adicional -->
+    <section class="max-w-7xl mx-auto px-8 py-12 z-10 relative">
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+            <div class="glass-panel p-8 rounded-3xl border-white/5">
+                <i data-lucide="pen-tool" class="w-6 h-6 mx-auto mb-4 text-purple-400"></i>
+                <h4 class="text-[10px] font-bold text-purple-400 uppercase tracking-[0.3em] mb-4">Filosofía</h4>
+                <p class="text-xs text-slate-400 italic">"Superación, crecimiento personal, mejora continua, resiliencia, progreso y abundancia.."</p>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl border-white/5">
+                <i data-lucide="users" class="w-6 h-6 mx-auto mb-4 text-indigo-400"></i>
+                <h4 class="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.3em] mb-4">Estelarium</h4>
+                <p class="text-xs text-slate-400">Únete a la comunidad, chatea secretamente y comparte las cordenadas de tu mensaje plasmado en Estelarium, chat secreto a plena vista del mundo.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl border-white/5">
+                <i data-lucide="flame" class="w-6 h-6 mx-auto mb-4 text-rose-400"></i>
+                <h4 class="text-[10px] font-bold text-rose-400 uppercase tracking-[0.3em] mb-4">Novedades</h4>
+                <p class="text-xs text-slate-400">Pronto el lanzamiento del Volumen II. Sigue y apoya esta historia, la senda Oculta, El Despertar De Hilda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-full py-16 border-t border-white/5 mt-20 relative z-10 bg-black/20 text-center">
+        <div class="max-w-7xl mx-auto px-8">
+            <span class="font-mystic text-xl tracking-widest text-white uppercase glow-text">LEYUSIONIS</span>
+            <p class="text-[9px] text-slate-500 uppercase tracking-[0.5em] mt-4 italic">El Despertar de los Zenith • Portal Oficial</p>
+            <div class="flex flex-col items-center gap-6 mt-10">
+                <p class="text-[10px] text-purple-400 uppercase tracking-widest font-bold">Sígueme en mis redes</p>
+                <div class="flex justify-center gap-10">
+                    <a href="https://www.instagram.com/leyusionis/" target="_blank" class="flex flex-col items-center gap-2 text-slate-500 hover:text-white transition-all group">
+                        <i data-lucide="instagram" class="w-6 h-6 group-hover:scale-110"></i>
+                        <span class="text-[8px] uppercase tracking-tighter">Personal</span>
+                    </a>
+                    <a href="https://www.instagram.com/la_senda_oculta_libro/" target="_blank" class="flex flex-col items-center gap-2 text-slate-500 hover:text-amber-400 transition-all group">
+                        <i data-lucide="book" class="w-6 h-6 group-hover:scale-110"></i>
+                        <span class="text-[8px] uppercase tracking-tighter">El Libro</span>
+                    </a>
+                    <a href="mailto:tu-correo@ejemplo.com" class="flex flex-col items-center gap-2 text-slate-500 hover:text-white transition-all group">
+                        <i data-lucide="mail" class="w-6 h-6 group-hover:scale-110"></i>
+                        <span class="text-[8px] uppercase tracking-tighter">Contacto</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
