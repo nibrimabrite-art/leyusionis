@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        .font-mystic { font-family: 'Playfair Display', serif; }
+        .font-mystic { font-family: 'Playfair_Display', serif; }
 
         .star-field {
             position: fixed;
@@ -75,64 +75,28 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* ESTILOS DEL PORTAL SECRETO */
-        #pixelResult {
+        .author-frame {
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        .author-frame::after {
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            image-rendering: pixelated;
-            pointer-events: none;
-            z-index: 10;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--primary), transparent, var(--secondary));
+            border-radius: 2.5rem;
+            z-index: -1;
+            opacity: 0.5;
         }
-
-        .lock-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px; 
-            height: 12px;
-            z-index: 50; 
-            cursor: crosshair; 
-            background: transparent;
-            border-radius: 50%;
+        .author-frame:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.2);
         }
-
-        #copyToast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: rgba(168, 85, 247, 0.95);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 99px;
-            font-size: 10px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 1000;
-        }
-        #copyToast.show { transform: translateX(-50%) translateY(0); }
-
-        .loader-ring {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(168, 85, 247, 0.3);
-            border-radius: 50%;
-            border-top-color: #a855f7;
-            animation: spin 1s ease-in-out infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="min-h-screen">
 
     <div class="star-field"></div>
-    <div id="copyToast">Código Rúnico Copiado al Portapapeles</div>
 
     <!-- Header / Nav Fijo -->
     <header class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
@@ -156,12 +120,9 @@
                 </a>
             </div>
 
-            <div class="flex items-center gap-3">
-                <button onclick="logoutVault()" id="logoutBtn" class="hidden text-[8px] text-slate-500 uppercase font-bold hover:text-white transition-colors">Cerrar Portal</button>
-                <a href="https://nibrimabrite-art.github.io/publicidad-book/" target="_blank" class="text-[10px] font-black uppercase tracking-[0.2em] bg-white text-black px-4 py-2 rounded-lg hover:bg-purple-400 hover:text-white transition-all">
-                    Comprar Libro
-                </a>
-            </div>
+            <a href="https://nibrimabrite-art.github.io/publicidad-book/" target="_blank" class="text-[10px] font-black uppercase tracking-[0.2em] bg-white text-black px-4 py-2 rounded-lg hover:bg-purple-400 hover:text-white transition-all">
+                Comprar Libro
+            </a>
         </nav>
     </header>
 
@@ -191,25 +152,17 @@
             </div>
         </div>
 
-        <!-- FOTO DE AUTOR CON PORTAL SECRETO -->
+        <!-- Elemento Visual / Foto de Autor -->
         <div class="relative flex flex-col justify-center items-center">
             <div class="absolute w-72 h-72 bg-purple-600/20 rounded-full blur-[100px] animate-pulse"></div>
-            <div id="mainContainer" class="glass-panel p-2 rounded-[3rem] border-purple-500/20 mb-6 relative overflow-hidden">
-                <div id="authorFrame" class="w-64 h-80 md:w-80 md:h-[400px] rounded-[2.5rem] bg-slate-900 flex items-center justify-center border border-white/5 overflow-hidden relative">
+            <div class="glass-panel p-2 rounded-[3rem] border-purple-500/20 mb-6 author-frame">
+                <div class="w-64 h-80 md:w-80 md:h-[400px] rounded-[2.5rem] bg-slate-900 flex items-center justify-center border border-white/5 overflow-hidden">
+                    <!-- Configurado para JPG directo -->
+                    <img id="author-img" src="foto-autor.jpg" alt="Luis Aguilera Albiña" class="w-full h-full object-cover" onerror="this.style.display='none'; document.getElementById('placeholder-icon').style.display='flex';">
                     
-                    <!-- Capa de Bloqueo (El punto invisible) -->
-                    <div id="lockOverlay" class="lock-overlay" onclick="handleFrameClick()"></div>
-
-                    <!-- Píxel de Salida -->
-                    <div id="pixelResult"></div>
-                    
-                    <!-- Icono por defecto -->
-                    <i data-lucide="user" class="w-20 h-20 text-purple-900/40"></i>
-                    
-                    <!-- Loader -->
-                    <div id="loader" class="absolute inset-0 bg-black/90 hidden flex flex-col items-center justify-center z-[60]">
-                        <div class="loader-ring mb-4"></div>
-                        <span class="text-[9px] uppercase tracking-[0.3em] text-white font-bold animate-pulse">Codificando...</span>
+                    <div id="placeholder-icon" class="hidden flex-col items-center gap-4">
+                        <i data-lucide="user" class="w-20 h-20 text-purple-900/40"></i>
+                        <span class="text-[10px] text-slate-600 uppercase">Esperando imagen...</span>
                     </div>
                 </div>
             </div>
@@ -219,28 +172,28 @@
         </div>
     </main>
 
-    <!-- Información adicional (RESTAURADA) -->
+    <!-- Información adicional -->
     <section class="max-w-7xl mx-auto px-8 py-12 z-10 relative">
         <div class="grid md:grid-cols-3 gap-8 text-center">
             <div class="glass-panel p-8 rounded-3xl border-white/5">
                 <i data-lucide="pen-tool" class="w-6 h-6 mx-auto mb-4 text-purple-400"></i>
                 <h4 class="text-[10px] font-bold text-purple-400 uppercase tracking-[0.3em] mb-4">Filosofía</h4>
-                <p class="text-xs text-slate-400 italic">"Superación, crecimiento personal, mejora continua, resiliencia, progreso y abundancia."</p>
+                <p class="text-xs text-slate-400 italic">"Superación, crecimiento personal, resiliencia y progreso."</p>
             </div>
             <div class="glass-panel p-8 rounded-3xl border-white/5">
                 <i data-lucide="users" class="w-6 h-6 mx-auto mb-4 text-indigo-400"></i>
                 <h4 class="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.3em] mb-4">Estelarium</h4>
-                <p class="text-xs text-slate-400">Únete a la comunidad, chatea secretamente y comparte las coordenadas de tu mensaje plasmado en Estelarium.</p>
+                <p class="text-xs text-slate-400">Únete a la comunidad y comparte las coordenadas de tu mensaje plasmado en el mural infinito.</p>
             </div>
             <div class="glass-panel p-8 rounded-3xl border-white/5">
                 <i data-lucide="flame" class="w-6 h-6 mx-auto mb-4 text-rose-400"></i>
                 <h4 class="text-[10px] font-bold text-rose-400 uppercase tracking-[0.3em] mb-4">Novedades</h4>
-                <p class="text-xs text-slate-400">Pronto el lanzamiento del Volumen II. Sigue y apoya esta historia: El Despertar de Hilda.</p>
+                <p class="text-xs text-slate-400">Pronto el lanzamiento del Volumen II. Sigue y apoya esta historia.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer (RESTAURADO) -->
+    <!-- Footer -->
     <footer class="w-full py-16 border-t border-white/5 mt-20 relative z-10 bg-black/20 text-center">
         <div class="max-w-7xl mx-auto px-8">
             <span class="font-mystic text-xl tracking-widest text-white uppercase glow-text">LEYUSIONIS</span>
@@ -256,127 +209,12 @@
                         <i data-lucide="book" class="w-6 h-6 group-hover:scale-110"></i>
                         <span class="text-[8px] uppercase tracking-tighter">El Libro</span>
                     </a>
-                    <a href="mailto:tu-correo@ejemplo.com" class="flex flex-col items-center gap-2 text-slate-500 hover:text-white transition-all group">
-                        <i data-lucide="mail" class="w-6 h-6 group-hover:scale-110"></i>
-                        <span class="text-[8px] uppercase tracking-tighter">Contacto</span>
-                    </a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modal de Acceso -->
-    <div id="vaultModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex items-center justify-center backdrop-blur-xl">
-        <div class="p-10 text-center max-w-xs w-full">
-            <h3 class="font-mystic text-xl text-white mb-6 uppercase tracking-widest">Credenciales</h3>
-            <input type="password" id="passInput" class="w-full bg-transparent border-b border-purple-500 py-2 text-white text-center text-2xl focus:outline-none mb-8" placeholder="••••••••">
-            <div class="flex justify-between">
-                <button onclick="closeVault()" class="text-[9px] uppercase font-bold text-slate-500">Cancelar</button>
-                <button onclick="checkVault()" class="text-[9px] uppercase font-bold text-purple-400">Acceder</button>
-            </div>
-        </div>
-    </div>
-
-    <input type="file" id="fileInput" class="hidden" accept="image/*">
-    <canvas id="procCanvas" class="hidden"></canvas>
-
     <script>
-        const SECRET = "HILDA2026";
-        let isAuthorized = false;
-
-        function handleFrameClick() {
-            if (!isAuthorized) {
-                document.getElementById('vaultModal').classList.remove('hidden');
-                document.getElementById('passInput').focus();
-            } else {
-                document.getElementById('fileInput').click();
-                logoutVault(); 
-            }
-        }
-
-        function closeVault() {
-            document.getElementById('vaultModal').classList.add('hidden');
-            document.getElementById('passInput').value = "";
-        }
-
-        function logoutVault() {
-            isAuthorized = false;
-            document.getElementById('logoutBtn').classList.add('hidden');
-        }
-
-        function checkVault() {
-            if (document.getElementById('passInput').value === SECRET) {
-                isAuthorized = true;
-                document.getElementById('logoutBtn').classList.remove('hidden');
-                closeVault();
-                document.getElementById('fileInput').click();
-                setTimeout(() => { isAuthorized = false; }, 1000);
-            } else {
-                const input = document.getElementById('passInput');
-                input.classList.add('border-red-500');
-                setTimeout(() => input.classList.remove('border-red-500'), 1000);
-            }
-        }
-
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const img = new Image();
-                img.onload = () => processUltraPixel(img);
-                img.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        });
-
-        function processUltraPixel(img) {
-            const loader = document.getElementById('loader');
-            loader.classList.remove('hidden');
-            const resolution = 140;
-            const pointSize = 2.4; 
-
-            setTimeout(() => {
-                const canvas = document.getElementById('procCanvas');
-                const ctx = canvas.getContext('2d', {willReadFrequently: true});
-                const ratio = img.height / img.width;
-                canvas.width = resolution;
-                canvas.height = Math.round(resolution * ratio);
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-                
-                let shadows = [];
-                for(let y = 0; y < canvas.height; y++) {
-                    for(let x = 0; x < canvas.width; x++) {
-                        const i = (y * canvas.width + x) * 4;
-                        const r = pixels[i], g = pixels[i+1], b = pixels[i+2], a = (pixels[i+3]/255).toFixed(2);
-                        if(a > 0.1) {
-                            const posX = (x - canvas.width/2) * pointSize;
-                            const posY = (y - canvas.height/2) * pointSize;
-                            shadows.push(`${posX}px ${posY}px rgba(${r},${g},${b},${a})`);
-                        }
-                    }
-                }
-                const pixelBox = document.getElementById('pixelResult');
-                pixelBox.style.width = '1px'; pixelBox.style.height = '1px';
-                pixelBox.style.boxShadow = shadows.join(',');
-                loader.classList.add('hidden');
-                copyToClipboard(`box-shadow: ${shadows.join(',')};\nwidth: 1px; height: 1px;`);
-            }, 500);
-        }
-
-        function copyToClipboard(text) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            const toast = document.getElementById('copyToast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
         lucide.createIcons();
     </script>
 </body>
