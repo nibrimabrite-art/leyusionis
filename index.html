@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        .font-mystic { font-family: 'Playfair_Display', serif; }
+        .font-mystic { font-family: 'Playfair Display', serif; }
 
         .star-field {
             position: fixed;
@@ -92,6 +92,12 @@
             transform: scale(1.02);
             box-shadow: 0 0 40px rgba(168, 85, 247, 0.2);
         }
+
+        /* Estilo para la sugerencia */
+        .suggestion-box {
+            border-left: 2px solid var(--primary);
+            background: linear-gradient(to right, rgba(168, 85, 247, 0.1), transparent);
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -142,12 +148,21 @@
                 Un mundo dominado por la oscuridad. Una muchacha intentando encontrar la verdad; un camino hacia la virtud, lleno de magia y superación. Un puzle de poemas que desafían el tiempo, impulsando un nuevo destino.
             </p>
             
-            <div class="flex flex-wrap gap-4">
+            <div class="flex flex-wrap gap-4 mb-8">
                 <a href="https://nibrimabrite-art.github.io/publicidad-book/" target="_blank" class="btn-main px-10 py-5 rounded-2xl text-white font-bold uppercase tracking-widest text-xs flex items-center gap-3">
                     <i data-lucide="book-open" class="w-4 h-4"></i> Mi Best Seller
                 </a>
                 <a href="https://nibrimabrite-art.github.io/estelarium/" target="_blank" class="px-10 py-5 rounded-2xl border border-white/10 hover:bg-white/5 text-white font-bold uppercase tracking-widest text-xs flex items-center gap-3 transition-all">
                     Entrar al Estelarium <i data-lucide="sparkles" class="w-4 h-4 text-amber-300"></i>
+                </a>
+            </div>
+
+            <!-- Entrada de Sugerencia -->
+            <div class="suggestion-box p-4 rounded-r-xl max-w-sm animate-pulse transition-all hover:animate-none">
+                <p class="text-[10px] text-purple-300 uppercase tracking-widest font-bold mb-1">Sugerencia del Autor</p>
+                <p class="text-xs text-slate-300 mb-2">Descubre el trasfondo místico y las runas antiguas en nuestro portal extendido:</p>
+                <a href="#" class="text-[10px] text-white font-bold uppercase underline decoration-purple-500 underline-offset-4 hover:text-purple-400 transition-colors">
+                    Explorar el Archivo Rúnico →
                 </a>
             </div>
         </div>
@@ -157,7 +172,6 @@
             <div class="absolute w-72 h-72 bg-purple-600/20 rounded-full blur-[100px] animate-pulse"></div>
             <div class="glass-panel p-2 rounded-[3rem] border-purple-500/20 mb-6 author-frame">
                 <div class="w-64 h-80 md:w-80 md:h-[400px] rounded-[2.5rem] bg-slate-900 flex items-center justify-center border border-white/5 overflow-hidden">
-                    <!-- Configurado para JPG directo -->
                     <img id="author-img" src="foto-autor.jpg" alt="Luis Aguilera Albiña" class="w-full h-full object-cover" onerror="this.style.display='none'; document.getElementById('placeholder-icon').style.display='flex';">
                     
                     <div id="placeholder-icon" class="hidden flex-col items-center gap-4">
@@ -199,8 +213,8 @@
             <span class="font-mystic text-xl tracking-widest text-white uppercase glow-text">LEYUSIONIS</span>
             <p class="text-[9px] text-slate-500 uppercase tracking-[0.5em] mt-4 italic">Buscadores de la Mejor Version • Portal Oficial</p>
             <div class="flex flex-col items-center gap-6 mt-10">
-                <p class="text-[10px] text-purple-400 uppercase tracking-widest font-bold">Sígueme en mis redes</p>
-                <div class="flex justify-center gap-10">
+                <p class="text-[10px] text-purple-400 uppercase tracking-widest font-bold">Conecta con el Universo</p>
+                <div class="flex justify-center gap-10 md:gap-16">
                     <a href="https://www.instagram.com/leyusionis/" target="_blank" class="flex flex-col items-center gap-2 text-slate-500 hover:text-white transition-all group">
                         <i data-lucide="instagram" class="w-6 h-6 group-hover:scale-110"></i>
                         <span class="text-[8px] uppercase tracking-tighter">Personal</span>
@@ -208,6 +222,11 @@
                     <a href="https://www.instagram.com/la_senda_oculta_libro/" target="_blank" class="flex flex-col items-center gap-2 text-slate-500 hover:text-amber-400 transition-all group">
                         <i data-lucide="book" class="w-6 h-6 group-hover:scale-110"></i>
                         <span class="text-[8px] uppercase tracking-tighter">El Libro</span>
+                    </a>
+                    <!-- Icono de YouTube añadido -->
+                    <a href="#" target="_blank" class="flex flex-col items-center gap-2 text-slate-500 hover:text-rose-500 transition-all group">
+                        <i data-lucide="youtube" class="w-6 h-6 group-hover:scale-110"></i>
+                        <span class="text-[8px] uppercase tracking-tighter">Canal</span>
                     </a>
                 </div>
             </div>
